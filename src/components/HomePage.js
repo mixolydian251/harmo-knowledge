@@ -20,10 +20,20 @@ class HomePage extends React.Component{
 
   formatAnswer = (answer) => this.state.harmony.formatInput(answer);
 
+  unicode = (input) => {
+    if (input[1] && input[1] === 'b'){
+      return input[0] + '\u266d'
+    } else if (input[1] && input[1] === '#'){
+      return input[0] + '\u266f'
+    } else {
+      return input
+    }
+  };
+
   setChord = () => {
     const root = this.state.harmony.keys[Math.floor(Math.random() * 12)];
     const tonality = this.state.harmony.tonality[Math.floor(Math.random() * 3)];
-    const semitone = this.state.harmony.isSharp(root) ? 'sharps' : 'flats';
+    const semitone = this.state.harmony.isSharp(root) ? 'sharps \u266f' : 'flats \u266d';
     this.setState({
       root,
       tonality,
@@ -70,7 +80,7 @@ class HomePage extends React.Component{
           <h1 className="chord__text">
             {this.state.root} {this.state.tonality}
           </h1>
-          <p className="chord__subtext">(Answer in {this.state.semitone}.)</p>
+          <p className="chord__subtext">(Answer in {this.state.semitone} .)</p>
         </div>
         <AttemptNotes
           checkAnswer={this.checkAnswer}
