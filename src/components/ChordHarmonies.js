@@ -1,6 +1,6 @@
 class ChordHarmonies {
   keys = ['G', 'D', 'A', 'E', 'B', 'F#','Db', 'Ab', 'Eb', 'Bb', 'F','C'];
-  tonality = ['major', 'minor', 'diminished'];
+  tonality = ['maj', 'min', 'dim', 'maj7', 'min7', '7', 'm7b5'];
   sharpKeys = ['G', 'D', 'A', 'E', 'B', 'F#'];
   chromaticScale = {
     flat: [
@@ -35,17 +35,37 @@ class ChordHarmonies {
     const scale = this.sharpKeys.includes(rootNote) ? 'sharp' : 'flat';
     const root = this.chromaticScale[scale].indexOf(rootNote);
     const harmony = {
-      major: {
+      maj: {
         third: root + 4,
         fifth: root + 7
       },
-      minor: {
+      min: {
         third: root + 3,
         fifth: root + 7
       },
-      diminished: {
+      dim: {
         third: root + 3,
         fifth: root + 6
+      },
+      maj7: {
+        third: root + 4,
+        fifth: root + 7,
+        seventh: root + 11,
+      },
+      '7': {
+        third: root + 4,
+        fifth: root + 7,
+        seventh: root + 10,
+      },
+      min7: {
+        third: root + 3,
+        fifth: root + 7,
+        seventh: root + 10,
+      },
+      m7b5: {
+        third: root + 3,
+        fifth: root + 6,
+        seventh: root + 10,
       }
     };
 
@@ -53,19 +73,22 @@ class ChordHarmonies {
       flat:{
         root: this.chromaticScale.flat[root],
         third: this.chromaticScale.flat[harmony[chord].third],
-        fifth: this.chromaticScale.flat[harmony[chord].fifth]
+        fifth: this.chromaticScale.flat[harmony[chord].fifth],
+        seventh: this.chromaticScale.flat[harmony[chord].seventh],
       },
       sharp: {
         root: this.chromaticScale.sharp[root],
         third: this.chromaticScale.sharp[harmony[chord].third],
-        fifth: this.chromaticScale.sharp[harmony[chord].fifth]
+        fifth: this.chromaticScale.sharp[harmony[chord].fifth],
+        seventh: this.chromaticScale.flat[harmony[chord].seventh],
       }
     };
 
     return {
       root: chordNotes[scale].root,
       third: chordNotes[scale].third,
-      fifth: chordNotes[scale].fifth
+      fifth: chordNotes[scale].fifth,
+      seventh: chordNotes[scale].seventh ? chordNotes[scale].seventh: undefined
     }
   };
 }

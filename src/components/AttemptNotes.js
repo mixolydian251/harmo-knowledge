@@ -4,22 +4,32 @@ class AttemptNotes extends React.Component{
   state = {
     root: '',
     third: '',
-    fifth: ''
+    fifth: '',
+    seventh: '',
   };
 
   handleRoot = (e) => {
+    e.preventDefault();
     let text = e.target.value;
     this.setState({root: text})
   };
 
   handleThird = (e) => {
+    e.preventDefault();
     let text = e.target.value;
     this.setState({third: text})
   };
 
   handleFifth = (e) => {
+    e.preventDefault();
     let text = e.target.value;
     this.setState({fifth: text})
+  };
+
+  handleSeventh = (e) => {
+    e.preventDefault();
+    let text = e.target.value;
+    this.setState({seventh: text})
   };
 
   checkAnswer = () => {
@@ -30,7 +40,8 @@ class AttemptNotes extends React.Component{
     this.setState({
       root: '',
       third: '',
-      fifth: ''
+      fifth: '',
+      seventh: '',
     });
     this.props.nextChord()
   };
@@ -39,6 +50,7 @@ class AttemptNotes extends React.Component{
     return(
       <div className="attempt">
         <div className="attempt__inputContainer">
+
           <div className="attempt__input">
             <p className="attempt__input--label">Root</p>
             <input
@@ -95,6 +107,28 @@ class AttemptNotes extends React.Component{
             </div>
             }
           </div>
+
+          {this.props.answer.seventh &&
+          <div className="attempt__input">
+            <p className="attempt__input--label">Seventh</p>
+            <input
+              className="attempt__area"
+              placeholder="7"
+              value={this.state.seventh}
+              onChange={this.handleSeventh}/>
+            {this.props.feedback &&
+            <div style={feedbackColor(this.props.feedback.seventh)}>
+              <p className="attempt__input--answer">
+                {this.props.answer.seventh}
+              </p>
+              <p className="attempt__input--feedback">
+                {this.props.feedback.seventh}
+              </p>
+            </div>
+            }
+          </div>
+          }
+
         </div>
 
         <div className="attempt__buttonContainer">

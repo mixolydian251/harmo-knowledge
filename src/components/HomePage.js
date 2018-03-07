@@ -12,7 +12,8 @@ class HomePage extends React.Component{
     answer: {
       root: undefined,
       third: undefined,
-      fifth: undefined
+      fifth: undefined,
+      seventh: undefined
     },
     feedback: undefined,
     semitone: undefined
@@ -32,27 +33,36 @@ class HomePage extends React.Component{
 
   setChord = () => {
     const root = this.state.harmony.keys[Math.floor(Math.random() * 12)];
-    const tonality = this.state.harmony.tonality[Math.floor(Math.random() * 3)];
-    const semitone = this.state.harmony.isSharp(root) ? 'sharps \u266f' : 'flats \u266d';
+    const tonality = this.state.harmony.tonality[Math.floor(Math.random() * 7)];
+    const semitone = this.state.harmony.isSharp(root) ? 'sharps' : 'flats';
     this.setState({
       root,
       tonality,
       semitone,
+    }, () => {
+      this.setAnswer();
+    })
+  };
+
+  setAnswer = () => {
+    const answer = this.state.harmony.chordScale(this.state.root, this.state.tonality);
+    this.setState({
+      answer: {
+        root: answer.root,
+        third: answer.third,
+        fifth: answer.fifth,
+        seventh: answer.seventh,
+      }
     })
   };
 
   checkAnswer = (attempt) => {
-    const answer = this.state.harmony.chordScale(this.state.root, this.state.tonality);
     this.setState({
-      answer:{
-        root: answer.root,
-        third: answer.third,
-        fifth: answer.fifth
-      },
       feedback: {
-        root: answer.root === this.formatAnswer(attempt.root) ? 'Nice!': 'Nope.',
-        third: answer.third === this.formatAnswer(attempt.third) ? 'Nice!': 'Nope.',
-        fifth: answer.fifth === this.formatAnswer(attempt.fifth) ? 'Nice!': 'Nope.',
+        root: this.state.answer.root === this.formatAnswer(attempt.root) ? 'Nice!': 'Nope.',
+        third: this.state.answer.third === this.formatAnswer(attempt.third) ? 'Nice!': 'Nope.',
+        fifth: this.state.answer.fifth === this.formatAnswer(attempt.fifth) ? 'Nice!': 'Nope.',
+        seventh: this.state.answer.seventh === this.formatAnswer(attempt.seventh) ? 'Nice!': 'Nope.',
       },
     })
   };
@@ -63,7 +73,8 @@ class HomePage extends React.Component{
       answer: {
         root: undefined,
         third: undefined,
-        fifth: undefined
+        fifth: undefined,
+        seventh: undefined,
       },
       feedback: undefined,
     })
