@@ -1,0 +1,84 @@
+.attempt{
+  &__inputContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100vw;
+    min-height: 250px;
+  }
+
+  &__input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.6rem;
+
+    &--label{
+      font-size: 2.5rem;
+      padding: 2rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &--answer{
+      font-size: 3rem;
+      padding: 3rem 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &--feedback{
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+  }
+
+  &__area{
+    height: 5rem;
+    width: 55px;
+    text-align: center;
+    font-size: 3rem;
+  }
+
+
+  &__buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9rem;
+  }
+
+  &__button{
+    width: 30%;
+    height: 8rem;
+    border-radius: 100px;
+    margin: 0 5rem;
+    color: white;
+    font-size: 1.8rem;
+
+    &__check{
+      background: linear-gradient(to bottom right, #49ff6b, #127f00);
+    }
+
+    &__next{
+      background: linear-gradient(to bottom right, #03ffd5, #0d8bff);
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .attempt{
+    &__buttonContainer{
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+    &__button {
+      width: 70%;
+      height: 7rem;
+      margin: 2rem 0;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.layout{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: scroll;
+}
+
+.chord{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__text{
+    font-size: 6rem;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+  &__subtext{
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+
+}
