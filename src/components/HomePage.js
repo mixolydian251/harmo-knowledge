@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ChordHarmonies from './ChordHarmonies';
 import AttemptNotes from './AttemptNotes';
+import SettingsMenu from './SettingsMenu';
 
 class HomePage extends React.Component{
 
@@ -16,7 +18,16 @@ class HomePage extends React.Component{
       seventh: undefined
     },
     feedback: undefined,
-    semitone: undefined
+    semitone: undefined,
+    preferences: {
+      maj: this.props.preferences.maj,
+      min: this.props.preferences.min,
+      dim: this.props.preferences.dim,
+      maj7: this.props.preferences.maj7,
+      min7: this.props.preferences.min7,
+      '7': this.props.preferences['7'],
+      m7b5: this.props.preferences.m7b5,
+    }
   };
 
   formatAnswer = (answer) => this.state.harmony.formatInput(answer);
@@ -31,9 +42,16 @@ class HomePage extends React.Component{
     }
   };
 
+  determineValidTonality = () => {
+    const keys = Object.keys(this.state.preferences);
+    const values = Object.values(this.state.preferences);
+    return keys.filter((key, i) => values[i] === true && key)
+  };
+
   setChord = () => {
+    const validTonalities = this.determineValidTonality();
     const root = this.state.harmony.keys[Math.floor(Math.random() * 12)];
-    const tonality = this.state.harmony.tonality[Math.floor(Math.random() * 7)];
+    const tonality = validTonalities[Math.floor(Math.random() * validTonalities.length)];
     const semitone = this.state.harmony.isSharp(root) ? 'sharps' : 'flats';
     this.setState({
       root,
@@ -80,13 +98,47 @@ class HomePage extends React.Component{
     })
   };
 
+  setPreferences = (preferences) => {
+    this.setState({settings: {
+      ...preferences
+    }})
+  };
+
   componentDidMount() {
     this.setChord();
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      root: undefined,
+      tonality: undefined,
+      answer: {
+        root: undefined,
+        third: undefined,
+        fifth: undefined,
+        seventh: undefined
+      },
+      feedback: undefined,
+      semitone: undefined,
+      preferences: {
+        maj: nextProps.preferences.maj,
+        min: nextProps.preferences.min,
+        dim: nextProps.preferences.dim,
+        maj7: nextProps.preferences.maj7,
+        min7: nextProps.preferences.min7,
+        '7': nextProps.preferences['7'],
+        m7b5: nextProps.preferences.m7b5,
+      }
+    }, () => {
+      this.setChord();
+    })
+  }
+
+
   render () {
     return(
       <div className="layout">
+        <SettingsMenu/>
         <div className="chord">
           <h1 className="chord__text">
             {this.state.root} {this.state.tonality}
@@ -103,4 +155,8 @@ class HomePage extends React.Component{
   }
 }
 
-export default HomePage;
+const MapStateToProps = state => ({
+  preferences: state.preferences
+});
+
+export default connect(MapStateToProps)(HomePage);

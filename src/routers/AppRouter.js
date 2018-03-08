@@ -18,7 +18,6 @@ class AppRouter extends React.Component {
       <Router
         history={history}>
         <div>
-          <SettingMenu/>
           <Switch>
             <Route path="/" component={HomePage} exact={true} />
             <Route component={NotFoundPage}/>

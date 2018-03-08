@@ -4,7 +4,7 @@
     justify-content: space-around;
     align-items: flex-start;
     width: 100vw;
-    min-height: 250px;
+    min-height: 225px;
   }
 
   &__input{
@@ -16,7 +16,7 @@
 
     &--label{
       font-size: 2.5rem;
-      padding: 2rem;
+      padding: 1rem;
       font-weight: 600;
       text-align: center;
     }
@@ -41,6 +41,8 @@
     width: 55px;
     text-align: center;
     font-size: 3rem;
+    border: none;
+    border-radius: 5px;
   }
 
 
@@ -54,6 +56,7 @@
   &__button{
     width: 30%;
     height: 8rem;
+    border: none;
     border-radius: 100px;
     margin: 0 5rem;
     color: white;

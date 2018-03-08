@@ -1,5 +1,6 @@
 .layout{
   height: 100vh;
+  min-height: 675px;
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.91), rgba(205, 205, 205, 0.1)), url(../images/texture.png);
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
   align-items: center;
   &__text{
     font-size: 6rem;
-    margin-top: 30px;
+    margin-top: 75px;
     margin-bottom: 0;
   }
   &__subtext{

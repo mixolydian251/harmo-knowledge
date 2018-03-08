@@ -1,4 +1,5 @@
 .menu{
+  background-color: white;
   position: absolute;
   top: 2.5rem; right: 2.5rem;
   font-size: 1.3rem;
@@ -12,6 +13,7 @@
 
 .modal{
   height: 100vh;
+  min-height: 675px;
   width: 100vw;
   position: absolute;
   top: 0; left: 0;
@@ -21,6 +23,7 @@
   animation: modalBackground 400ms ease;
 
   &__button{
+    background-color: white;
     position: absolute;
     top: 2.5rem; left: 2.5rem;
     font-size: 1.3rem;
@@ -31,6 +34,65 @@
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
   }
 }
+
+
+.chordSettings{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(auto, 150px);
+  padding: 10rem 2rem 0 2rem;
+  grid-gap: 2rem;
+
+
+
+  &__option{
+    background-color: white;
+    align-items: center ;
+    align-content: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  &__title{
+    color: #222222;
+    font-size: 3rem;
+    padding: 1rem;
+  }
+
+  &__description{
+    color: #222222;
+    font-size: 2.5rem;
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .chordSettings {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(auto, 100px);
+    padding: 12rem 1rem 0 1rem;
+    grid-gap: 1rem;
+
+    &__title{
+      font-size: 2.5rem;
+    }
+
+    &__description{
+      font-size: 2rem;
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 @keyframes menuWoosh {
   0%{
