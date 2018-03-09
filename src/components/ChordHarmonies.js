@@ -80,7 +80,7 @@ class ChordHarmonies {
         root: this.chromaticScale.sharp[root],
         third: this.chromaticScale.sharp[harmony[chord].third],
         fifth: this.chromaticScale.sharp[harmony[chord].fifth],
-        seventh: this.chromaticScale.flat[harmony[chord].seventh],
+        seventh: this.chromaticScale.sharp[harmony[chord].seventh],
       }
     };
 

@@ -6,6 +6,7 @@ const preferencesReducerDefaultState = {
   '7': false,
   min7: false,
   m7b5: false,
+  mode: 'chord'
 };
 
 export default (state = preferencesReducerDefaultState, action) => {

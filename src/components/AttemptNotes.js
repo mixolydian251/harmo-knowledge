@@ -11,25 +11,25 @@ class AttemptNotes extends React.Component{
   handleRoot = (e) => {
     e.preventDefault();
     let text = e.target.value;
-    this.setState({root: text})
+    this.setState({root: this.props.unicode(text)})
   };
 
   handleThird = (e) => {
     e.preventDefault();
     let text = e.target.value;
-    this.setState({third: text})
+    this.setState({third: this.props.unicode(text)})
   };
 
   handleFifth = (e) => {
     e.preventDefault();
     let text = e.target.value;
-    this.setState({fifth: text})
+    this.setState({fifth: this.props.unicode(text)})
   };
 
   handleSeventh = (e) => {
     e.preventDefault();
     let text = e.target.value;
-    this.setState({seventh: text})
+    this.setState({seventh: this.props.unicode(text)})
   };
 
   checkAnswer = () => {
@@ -49,7 +49,7 @@ class AttemptNotes extends React.Component{
   render(){
     return(
       <div className="attempt">
-        <div className="attempt__inputContainer">
+        <div className="attempt__notesContainer">
 
           <div className="attempt__input">
             <p className="attempt__input--label">Root</p>
@@ -61,7 +61,7 @@ class AttemptNotes extends React.Component{
             {this.props.feedback &&
             <div style={feedbackColor(this.props.feedback.root)}>
               <p className="attempt__input--answer">
-                {this.props.answer.root}
+                {this.props.unicode(this.props.answer.root)}
               </p>
               <p className="attempt__input--feedback">
                 {this.props.feedback.root}
@@ -80,7 +80,7 @@ class AttemptNotes extends React.Component{
             {this.props.feedback &&
             <div style={feedbackColor(this.props.feedback.third)}>
               <p className="attempt__input--answer">
-                {this.props.answer.third}
+                {this.props.unicode(this.props.answer.third)}
               </p>
               <p className="attempt__input--feedback">
                 {this.props.feedback.third}
@@ -99,7 +99,7 @@ class AttemptNotes extends React.Component{
             {this.props.feedback &&
             <div style={feedbackColor(this.props.feedback.fifth)}>
               <p className="attempt__input--answer">
-                {this.props.answer.fifth}
+                {this.props.unicode(this.props.answer.fifth)}
               </p>
               <p className="attempt__input--feedback">
                 {this.props.feedback.fifth}
@@ -119,7 +119,7 @@ class AttemptNotes extends React.Component{
             {this.props.feedback &&
             <div style={feedbackColor(this.props.feedback.seventh)}>
               <p className="attempt__input--answer">
-                {this.props.answer.seventh}
+                {this.props.unicode(this.props.answer.seventh)}
               </p>
               <p className="attempt__input--feedback">
                 {this.props.feedback.seventh}

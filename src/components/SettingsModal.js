@@ -11,6 +11,7 @@ class SettingsModal extends React.Component {
     '7': this.props.preferences['7'],
     min7: this.props.preferences.min7,
     m7b5: this.props.preferences.m7b5,
+    mode: this.props.preferences.mode
   };
 
   handleModal = () => {
@@ -49,6 +50,12 @@ class SettingsModal extends React.Component {
 
   handlem7b5 = () => {
     this.setState((prevState) => ({m7b5: !prevState.m7b5}),
+      () => {this.props.setPreferences(this.state)});
+  };
+
+  handleMode = () => {
+    const mode = this.state.mode === 'chord' ? 'note' : 'chord';
+    this.setState({mode},
       () => {this.props.setPreferences(this.state)});
   };
 
@@ -105,6 +112,17 @@ class SettingsModal extends React.Component {
             <p className="chordSettings__description">{'( 1, \u266d3, \u266d5, \u266d7 )'}</p>
           </button>
 
+          <button className="chordSettings__option"
+                  style={modeColor(this.state.mode)}
+                  onClick={this.handleMode}>
+            <h2 className="chordSettings__title--mode">Mode:</h2>
+            {
+              this.props.preferences.mode === 'chord' ?
+                <h2 className="chordSettings__description--mode">Notes</h2> :
+                <h2 className="chordSettings__description--mode">Chords</h2>
+            }
+          </button>
+
         </div>
         <button className="modal__button"
           onClick={this.handleModal}>Close</button>
@@ -112,6 +130,17 @@ class SettingsModal extends React.Component {
     )
   }
 }
+
+const modeColor = (mode) => {
+  return mode === 'chord' ?
+    {
+      backgroundColor: '#ffffff',
+      color: '#222222',
+    } : {
+      backgroundColor: '#0d8fa7',
+      color: '#ffffff',
+    }
+};
 
 const borderStyle = (chord) => {
   return chord ?

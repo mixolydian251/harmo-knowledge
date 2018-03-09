@@ -1,11 +1,63 @@
 .attempt{
-  &__inputContainer{
+  width: 100vw;
+
+
+  &__notesContainer{
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     width: 100vw;
     min-height: 225px;
   }
+
+  &__chordContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    min-height: 235px;
+
+    &--select{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      width: 100vw;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__select{
+    background-color: white;
+    height: 5rem;
+    width: 23rem;
+    font-size: 2.2rem;
+    margin-top: 2rem;
+  }
+
+  &__feedback{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    &--text{
+      margin: 0;
+      padding: 3rem;
+      font-size: 2.5rem;
+    }
+
+    &--chord{
+      margin: 0;
+      padding: 0;
+      font-size: 6rem;
+    }
+  }
+
+
+
 
   &__input{
     display: flex;
@@ -74,6 +126,10 @@
 
 @media screen and (max-width: 575px) {
   .attempt{
+    &__select{
+      width: 19rem;
+    }
+
     &__buttonContainer{
       flex-direction: column;
       margin-top: 3rem;
